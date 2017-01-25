@@ -7,7 +7,7 @@ import (
 )
 
 func main(){
-    ListenAddr, err := net.ResolveUDPAddr("udp", ":30001")
+    ListenAddr, err := net.ResolveUDPAddr("udp", ":30000")
     if err != nil{
         log.Fatal(err)
     }
@@ -17,6 +17,9 @@ func main(){
     if err != nil{
         log.Fatal(err)
     }
+
+    fmt.Println("IP: ", listenConn)
+
     defer listenConn.Close()
     
     //for{
@@ -27,4 +30,7 @@ func main(){
             log.Fatal(err)
         }
     //}
+
+        //server ip: "129.241.187.43:51504"
+        //129.241.187.156/24
 }

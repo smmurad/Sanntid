@@ -1,4 +1,3 @@
-export PATH=/path/to/go/bin:$PATH
 
 package main
  
