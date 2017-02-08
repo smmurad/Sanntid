@@ -1,36 +1,49 @@
 package runNetwork
 
 import (
-	"./network/bcast"
-	"./network/localip"
-	"./network/peers"
+	"../bcast"
+	"../localip"
+	"../peers"
+	"fmt"
+	"os"
 )
 
-type MyString struct {
-	Message string
-	Iter    int
+type ButtonType int
+const(
+	ButtonUp = 0
+	ButtonDown = 1
+	ButtonCommand = 2
+)
+
+type ButtonStruct struct{
+	Button_Type ButtonType
+	Floor int
 }
 
-const PeerPort := 20009
-const BcastPort := 30009
+type MyOrder struct {
+	Button ButtonStruct
+	Id int
+}
 
-func RunNetwork(){
-		if id == "" {
+
+
+const PeerPort = 20009
+const BcastPort = 30009
+
+func RunPeerNetwork(peerUpdateCh chan<- peers.PeerUpdate, peerTxEnable <-chan bool){
+		
 		localIP, err := localip.LocalIP()
 		if err != nil {
 			fmt.Println(err)
 			localIP = "DISCONNECTED"
 		}
-		id = fmt.Sprintf("peer-%s-%d", localIP, os.Getpid())
-	}
+		id := fmt.Sprintf("peer-%s-%d", localIP, os.Getpid())
 
-		// We make a channel for receiving updates on the id's of the peers that are
-	//  alive on the network
-	peerUpdateCh := make(chan peers.PeerUpdate)
-	// We can disable/enable the transmitter after it has been started.
-	// This could be used to signal that we are somehow "unavailable".
-	peerTxEnable := make(chan bool)
-	go peers.Transmitter(msgPort, id, peerTxEnable)
-	go peers.Receiver(msgPort, peerUpdateCh)
+	go peers.Transmitter(PeerPort, id, peerTxEnable)
+	go peers.Receiver(PeerPort, peerUpdateCh)
+}
 
+func RunMessageNetwork(orderTxCh chan MyOrder, orderRxCh chan MyOrder){
+	go bcast.Transmitter(BcastPort, orderTxCh)
+	go bcast.Receiver(BcastPort, orderRxCh)
 }
