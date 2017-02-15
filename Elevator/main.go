@@ -1,11 +1,18 @@
 package main
 
+/*
+#cgo CFLAGS: -std=c11
+#cgo LDFLAGS: -lcomedi -lm
+#include "hardware/elev.h"
+*/
+import "C"
+
 import (
-	"./network/peers"
-	"./network/runNetwork"
-	"./network/setup"
+	//"./network/peers"
+	//"./network/runNetwork"
+	//"./network/setup"
 	"fmt"
-	"time"
+	//"time"
 )
 
 type HelloMsg struct {
@@ -15,6 +22,11 @@ type HelloMsg struct {
  
 
 func main(){
+	
+	fmt.Println("Kjører test")
+	C.test()
+
+	/*
 	peerUpdateCh := make(chan peers.PeerUpdate)
 	peerTxEnableCh := make(chan bool)
 	orderTxCh := make(chan setup.MyOrder)
@@ -46,6 +58,6 @@ func main(){
 		case a := <-orderRxCh:
 			fmt.Printf("Received: %#v\n", a)
 		}
-	}
+	}*/
 }
 
