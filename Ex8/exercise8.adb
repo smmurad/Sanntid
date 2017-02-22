@@ -88,10 +88,9 @@ procedure exercise8 is
                     when Error : others =>
                         Put_Line("Error happened");
                 end;
+                Manager.Finished;
             end select;
 
-
-            Manager.Finished;
             Put_Line ("  Worker" & Integer'Image(Initial) & " comitting" & Integer'Image(Num));
 
             Prev := Num;

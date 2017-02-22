@@ -1,9 +1,11 @@
 package main
 
 /*
-#cgo CFLAGS: -std=c11
+#cgo CFLAGS: -std=gnu99
 #cgo LDFLAGS: -lcomedi -lm
-#include "hardware/elev.h"
+#include "hardware/io.c"
+#include "hardware/elev.c"
+#include "hardware/main.c"
 */
 import "C"
 
@@ -24,7 +26,8 @@ type HelloMsg struct {
 func main(){
 	
 	fmt.Println("Kjører test")
-	C.test()
+	C.testMain();
+	//C.elev_init()
 
 	/*
 	peerUpdateCh := make(chan peers.PeerUpdate)

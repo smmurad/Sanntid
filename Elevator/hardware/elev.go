@@ -58,8 +58,8 @@ func SetMotorDirection(dirn setup.MotorDir) {
 	}
 }
 
-func SetButtonLamp(button config.ButtonType, floor int, value int) {
-	if floor >= 0 && floor < config.NUM_FLOORS && button >= 0 && button < config.NUM_BUTTONS {
+func SetButtonLamp(button setup.ButtonType, floor int, value int) {
+	if floor >= 0 && floor < setup.NUM_FLOORS && button >= 0 && button < setup.NUM_BUTTONS {
 		if value != 0 {
 			IO_Set_Bit(Lamp_channel_matrix[floor][button])
 		} else {
@@ -69,11 +69,10 @@ func SetButtonLamp(button config.ButtonType, floor int, value int) {
 }
 
 func SetFloorIndicator(floor int) {
-	if !(floor >= 0 && floor < config.NUM_FLOORS) {
+	if !(floor >= 0 && floor < setup.NUM_FLOORS) {
 		log.Printf("Floor indicator: Invalid floor")
 		return
 	}
-
 	// Binary encoding. One light must always be on.
 	if floor&0x02 != 0 {
 		IO_Set_Bit(LIGHT_FLOOR_IND1)
@@ -104,7 +103,7 @@ func SetStopLamp(value int) {
 	}
 }
 
-func GetButtonSignal(button config.ButtonType, floor int) int {
+func GetButtonSignal(button setup.ButtonType, floor int) int {
 	if IO_Read_Bit(Button_channel_matrix[floor][button]) {
 		return 1
 	} else {

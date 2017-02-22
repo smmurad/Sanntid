@@ -20,8 +20,6 @@ typedef enum tag_elev_lamp_type {
     BUTTON_COMMAND = 2
 } elev_button_type_t;
 
-void test(void);
-
 void elev_init(void);
 
 void elev_set_motor_direction(elev_motor_direction_t dirn);

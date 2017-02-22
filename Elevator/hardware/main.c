@@ -3,7 +3,7 @@
 
 #include "elev.h"
 
-int main() {
+int testMain() {
     elev_init();
 
     printf("Press STOP button to stop elevator and exit program.\n");
@@ -14,7 +14,7 @@ int main() {
         // Change direction when we reach top/bottom floor
         if (elev_get_floor_sensor_signal() == N_FLOORS - 1) {
             elev_set_motor_direction(DIRN_DOWN);
-        } else if (elev_get_floor_sensor_signal() == 0) {
+        } else if (elev_get_floor_sensor_signal() == 0 ) {
             elev_set_motor_direction(DIRN_UP);
         }
 

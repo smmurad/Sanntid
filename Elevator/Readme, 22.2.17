@@ -1,0 +1,8 @@
+Skal sette opp FSM
+*tråder: door, button, floorSensor, setDir, addOrder(target, order)
+
+2d kø med liste for innsideknapper
+
+
+
+

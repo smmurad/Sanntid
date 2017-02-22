@@ -24,11 +24,6 @@ static const int button_channel_matrix[N_FLOORS][N_BUTTONS] = {
     {BUTTON_UP4, BUTTON_DOWN4, BUTTON_COMMAND4},
 };
 
-void test(){
-    printf("hello\n");
-}
-
-
 void elev_init(void) {
     int init_success = io_init();
     assert(init_success && "Unable to initialize elevator hardware!");
