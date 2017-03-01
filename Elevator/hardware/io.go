@@ -2,9 +2,9 @@
 //Copied from Magnus Harr
 
 package hardware
-
+//#cgo CFLAGS: -std=c11
 //#cgo LDFLAGS: -lcomedi -lm
-//#include "io.c"
+//#include "io.h"
 import "C"
 
 func IO_Init() bool {

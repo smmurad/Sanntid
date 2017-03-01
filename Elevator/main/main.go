@@ -1,18 +1,11 @@
 package main
 
-/*
-#cgo CFLAGS: -std=gnu99
-#cgo LDFLAGS: -lcomedi -lm
-#include "hardware/io.c"
-#include "hardware/elev.c"
-#include "hardware/main.c"
-*/
-import "C"
-
 import (
 	//"./network/peers"
 	//"./network/runNetwork"
-	//"./network/setup"
+	"../setup"
+	"../hardware"
+	"../fsm"
 	"fmt"
 	//"time"
 )
@@ -21,12 +14,27 @@ type HelloMsg struct {
 	Message string
 	Iter    int
 }
+
+var ch_button_polling = make(chan setup.ButtonStruct)
+
  
 
 func main(){
 	
+	hardware.Init()
+	hardware.SetButtonLamp(setup.ButtonCommand, 1, 1)
+	go hardware.ReadButtons(ch_button_polling)
+	go fsm.FsmOrderHandler(ch_button_polling)
 	fmt.Println("Kjører test")
-	C.testMain();
+
+	for{
+		select{
+			//case msg := <- ch_button_polling:
+				//fmt.Println(msg)
+		}
+	}
+
+
 	//C.elev_init()
 
 	/*

@@ -5,4 +5,16 @@ Skal sette opp FSM
 
 
 
+Todo:
+* Hardware tråd-> knapper, done
+* Lage addOrder, done, funker ikke
+* Lage tilhørende funksjoner til order
+* Hardware tråd-> floor sensor
+* Bruke ip-adresse som ID
+* ...
 
+fra 1.3:
+IsNewOrder fungerer ikke
+ikke testet fsmOrderHandler++
+
+we did good

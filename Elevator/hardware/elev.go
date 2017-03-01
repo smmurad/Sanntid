@@ -1,7 +1,7 @@
 package hardware
 
 import (
-	"setup"
+	"../setup"
 	"log"
 )
 

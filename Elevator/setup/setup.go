@@ -2,6 +2,7 @@ package setup
 
 const NUM_FLOORS 	= 4
 const NUM_BUTTONS 	= 3
+const MAX_NUM_ELEVATORS = 3
 
 type MotorDir int
 const(
